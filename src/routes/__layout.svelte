@@ -24,8 +24,11 @@
 </script>
 
 <div class="wrapper">
-	<header>
-		<div class="logo">LOGO</div>
+	<header class="header">
+		<div class="logo">
+			<img src="/logo.svg" alt="logo de Bison Voyageur" />
+			<p>Bison<br />Voyageur</p>
+		</div>
 		<nav>
 			<ol>
 				{#each categories as category}
@@ -50,11 +53,31 @@
 	</main>
 </div>
 
-<style>
+<style lang="scss">
 	.wrapper {
-		height: 100vh;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
+	}
+	.header {
+		background-color: #f0f0f0;
+	}
+	.logo {
+		padding: 5px;
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		img {
+			width: 70px;
+		}
+		p {
+			font-family: Akaya, sans-serif;
+			margin: 0 0 0 0.5em;
+			font-size: 2rem;
+			color: #754c24;
+		}
+	}
+	nav {
+		display: none;
 	}
 </style>

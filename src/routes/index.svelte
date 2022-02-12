@@ -26,3 +26,9 @@
 		<div>{article.title}</div>
 	{/each}
 </main>
+
+<style>
+	main {
+		background-color: lightcoral;
+	}
+</style>
