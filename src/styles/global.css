@@ -2,6 +2,10 @@
 	font-family: 'Akaya';
 	src: url('../fonts/AkayaTelivigala-Regular.ttf') format('truetype');
 }
+@font-face {
+	font-family: 'Montserrat';
+	src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+}
 
 * {
 	box-sizing: border-box;
@@ -9,6 +13,7 @@
 body {
 	margin: 0;
 	line-height: 1.6em;
+	font-family: Montserrat, sans-serif;
 }
 a {
 	color: inherit;
