@@ -19,6 +19,7 @@
 
 <script>
 	import '../styles/global.css';
+	import BurgerMenu from '$lib/components/BurgerMenu.svelte';
 	export let menu;
 	let categories = menu[0].categories;
 </script>
@@ -28,6 +29,7 @@
 		<div class="logo">
 			<img src="/logo.svg" alt="logo de Bison Voyageur" />
 			<p>Bison<br />Voyageur</p>
+			<BurgerMenu />
 		</div>
 		<nav>
 			<ol>
@@ -66,11 +68,13 @@
 		padding: 5px;
 		display: flex;
 		flex-flow: row nowrap;
+		justify-content: space-between;
 		align-items: center;
 		img {
 			width: 70px;
 		}
 		p {
+			flex-grow: 10;
 			font-family: Akaya, sans-serif;
 			margin: 0 0 0 0.5em;
 			font-size: 2rem;
