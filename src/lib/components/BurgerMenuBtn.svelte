@@ -1,7 +1,10 @@
 <script>
+	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
 	let isOpen = false;
 	function toggleOpenNav() {
 		isOpen = !isOpen;
+		dispatch('openMenuState', isOpen);
 	}
 </script>
 
@@ -41,6 +44,7 @@
 </button>
 
 <style lang="scss">
+	@use '../../styles/variables' as var;
 	.menu {
 		width: 50px;
 		height: 50px;
@@ -50,7 +54,7 @@
 		svg {
 			width: 100%;
 			height: 100%;
-			color: #754c24;
+			color: var.$color-title;
 		}
 	}
 </style>
