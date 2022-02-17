@@ -19,19 +19,23 @@
 
 <script>
 	import '../styles/global.css';
-	import BurgerMenu from '$lib/components/BurgerMenu.svelte';
+	import BurgerMenuBtn from '$lib/components/BurgerMenuBtn.svelte';
 	export let menu;
 	let categories = menu[0].categories;
+	let menuIsOpen = false;
+	function menuStateChanges(event) {
+		menuIsOpen = event.detail;
+	}
 </script>
 
-<div class="wrapper">
+<div class="layout">
 	<header class="header">
 		<div class="logo">
 			<img src="/logo.svg" alt="logo de Bison Voyageur" />
 			<p>Bison<br />Voyageur</p>
-			<BurgerMenu />
 		</div>
-		<nav>
+		<BurgerMenuBtn on:openMenuState={menuStateChanges} />
+		<nav class="nav {menuIsOpen ? '' : 'hidden'}">
 			<ol>
 				{#each categories as category}
 					<li>
@@ -56,32 +60,54 @@
 </div>
 
 <style lang="scss">
-	.wrapper {
+	@use '../styles/variables' as var;
+
+	.layout {
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
 	}
 	.header {
-		background-color: #f0f0f0;
+		position: relative;
+		background-color: var.$color-bg-head;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		align-items: center;
 	}
 	.logo {
 		padding: 5px;
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: space-between;
-		align-items: center;
 		img {
-			width: 70px;
+			height: 65px;
 		}
 		p {
 			flex-grow: 10;
-			font-family: Akaya, sans-serif;
+			font-family: var.$font-title;
 			margin: 0 0 0 0.5em;
 			font-size: 2rem;
-			color: #754c24;
+			line-height: 1.8rem;
+			color: var.$color-title;
 		}
 	}
-	nav {
-		display: none;
+	.nav {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background: var.$color-bg-head;
+		overflow: hidden;
+		transform-origin: top;
+		transition: all 300ms;
+		> ol {
+			padding: 0.5em;
+			margin: 0;
+		}
+		&.hidden {
+			transform: scaleY(0);
+			opacity: 0;
+		}
 	}
 </style>
