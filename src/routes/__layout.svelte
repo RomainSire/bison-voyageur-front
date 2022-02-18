@@ -1,8 +1,8 @@
 <script context="module">
 	export async function load({ fetch }) {
-		const rawMenu = await fetch('http://localhost:5000/api/menu');
-		const menu = await rawMenu.json();
-		if (rawMenu.ok) {
+		const res = await fetch('http://localhost:5000/api/menu');
+		const menu = await res.json();
+		if (res.ok) {
 			return {
 				props: {
 					menu
@@ -10,7 +10,7 @@
 			};
 		} else {
 			return {
-				status: rawMenu.status,
+				status: res.status,
 				error: new Error('Could not fetch the menu')
 			};
 		}
@@ -30,21 +30,21 @@
 
 <div class="layout">
 	<header class="header">
-		<div class="logo">
+		<a href="/" class="logo">
 			<img src="/logo.svg" alt="logo de Bison Voyageur" />
 			<p>Bison<br />Voyageur</p>
-		</div>
+		</a>
 		<BurgerMenuBtn on:openMenuState={menuStateChanges} />
 		<nav class="nav {menuIsOpen ? '' : 'hidden'}">
-			<ol>
+			<ol class="nav__wrapper">
 				{#each categories as category}
 					<li>
-						{category.label}
+						<span class="nav__title">{category.label}</span>
 						<ol>
 							{#if Array.isArray(category.articles)}
 								{#each category.articles as article}
-									<li>
-										{article.title}
+									<li class="nav__link">
+										<a href="/mon-super-article">{article.title}</a>
 									</li>
 								{/each}
 							{/if}
@@ -74,6 +74,7 @@
 		flex-flow: row nowrap;
 		justify-content: space-between;
 		align-items: center;
+		box-shadow: 0 0 10px #333;
 	}
 	.logo {
 		padding: 5px;
@@ -98,16 +99,27 @@
 		left: 0;
 		right: 0;
 		background: var.$color-bg-head;
+		color: var.$color-text;
 		overflow: hidden;
 		transform-origin: top;
 		transition: all 300ms;
-		> ol {
-			padding: 0.5em;
-			margin: 0;
-		}
 		&.hidden {
 			transform: scaleY(0);
 			opacity: 0;
+		}
+		&__wrapper {
+			padding: 1em;
+		}
+		&__title {
+			display: block;
+			font-family: var.$font-title;
+			font-size: 1.3em;
+			margin-bottom: 0.4em;
+		}
+		&__link {
+			line-height: 1.1em;
+			margin-left: 1em;
+			margin-bottom: 0.8em;
 		}
 	}
 </style>
