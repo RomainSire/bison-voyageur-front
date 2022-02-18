@@ -44,7 +44,7 @@
 							{#if Array.isArray(category.articles)}
 								{#each category.articles as article}
 									<li class="nav__link">
-										<a href="/mon-super-article">{article.title}</a>
+										<a href="/article/mon-super-article">{article.title}</a>
 									</li>
 								{/each}
 							{/if}
