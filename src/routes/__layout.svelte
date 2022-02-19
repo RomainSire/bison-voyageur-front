@@ -1,18 +1,27 @@
 <script context="module">
 	// get menu as SSR
 	export async function load({ fetch }) {
-		const res = await fetch('http://localhost:5000/api/menu');
-		const menu = await res.json();
-		if (res.ok) {
+		const [resMenu, resArticles] = await Promise.all([
+			fetch('http://localhost:5000/api/menu'),
+			fetch('http://localhost:5000/api/articles')
+		]);
+		const [menu, articles] = await Promise.all([resMenu.json(), resArticles.json()]);
+		if (resMenu.ok && resArticles.ok) {
 			return {
 				props: {
-					menu
+					menu,
+					articles
 				}
+			};
+		} else if (!resMenu.ok) {
+			return {
+				status: resMenu.status,
+				error: new Error('Could not fetch the menu')
 			};
 		} else {
 			return {
-				status: res.status,
-				error: new Error('Could not fetch the menu')
+				status: resArticles.status,
+				error: new Error('Could not fetch the articles')
 			};
 		}
 	}
@@ -21,9 +30,16 @@
 <script>
 	import '../styles/global.css';
 	import Navigation from '$lib/components/Navigation.svelte';
+	import { articlesStore } from '$lib/store';
 
 	// menu data from SSR
 	export let menu;
+	export let articles;
+
+	// save articles in store
+	articlesStore.update(() => {
+		return articles;
+	});
 
 	// state of navigation menu (binded to Navigation and BurgerMenuBtn components)
 	let menuIsOpen = false;
