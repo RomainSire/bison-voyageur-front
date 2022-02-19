@@ -98,33 +98,4 @@
 			color: var.$color-title;
 		}
 	}
-	.nav {
-		position: absolute;
-		top: 100%;
-		left: 0;
-		right: 0;
-		background: var.$color-bg-head;
-		color: var.$color-text;
-		overflow: hidden;
-		transform-origin: top;
-		transition: all 300ms;
-		&.hidden {
-			transform: scaleY(0);
-			opacity: 0;
-		}
-		&__wrapper {
-			padding: 1em;
-		}
-		&__title {
-			display: block;
-			font-family: var.$font-title;
-			font-size: 1.3em;
-			margin-bottom: 0.4em;
-		}
-		&__link {
-			line-height: 1.1em;
-			margin-left: 1em;
-			margin-bottom: 0.8em;
-		}
-	}
 </style>
