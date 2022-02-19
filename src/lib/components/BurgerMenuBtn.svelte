@@ -1,22 +1,15 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
-	const dispatch = createEventDispatcher();
-	export let isOpen = false;
-	/**
-	 * change the state of the button (open/close) and fire event for parent component
-	 */
-	function toggleOpenNav() {
-		isOpen = !isOpen;
-		dispatch('openMenuState', isOpen);
-	}
+	export let menuIsOpen = false;
 </script>
 
 <button
-	class="menu {isOpen ? 'open' : ''}"
-	aria-label={isOpen ? 'fermer le menu de navigation' : 'ouvrir le menu de navigation'}
-	on:click={toggleOpenNav}
+	class="burger {menuIsOpen ? 'open' : ''}"
+	aria-label={menuIsOpen ? 'fermer le menu de navigation' : 'ouvrir le menu de navigation'}
+	on:click={() => {
+		menuIsOpen = !menuIsOpen;
+	}}
 >
-	{#if isOpen}
+	{#if menuIsOpen}
 		<!-- "close" icon -->
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +41,7 @@
 
 <style lang="scss">
 	@use '../../styles/variables' as var;
-	.menu {
+	.burger {
 		width: 50px;
 		height: 50px;
 		cursor: pointer;

@@ -20,44 +20,28 @@
 
 <script>
 	import '../styles/global.css';
-	import BurgerMenuBtn from '$lib/components/BurgerMenuBtn.svelte';
+	import Navigation from '$lib/components/Navigation.svelte';
 
 	// menu data from SSR
 	export let menu;
-	let categories = menu[0].categories;
 
-	// display the menu and handle the open/close state
+	// state of navigation menu (binded to Navigation and BurgerMenuBtn components)
 	let menuIsOpen = false;
-	function menuStateChanges(event) {
-		menuIsOpen = event.detail;
-	}
 </script>
 
 <div class="layout">
 	<header class="header">
-		<a href="/" class="logo">
+		<a
+			href="/"
+			class="logo"
+			on:click={() => {
+				menuIsOpen = false;
+			}}
+		>
 			<img src="/logo.svg" alt="logo de Bison Voyageur" />
 			<p>Bison<br />Voyageur</p>
 		</a>
-		<BurgerMenuBtn isOpen={menuIsOpen} on:openMenuState={menuStateChanges} />
-		<nav class="nav {menuIsOpen ? '' : 'hidden'}">
-			<ol class="nav__wrapper">
-				{#each categories as category}
-					<li>
-						<span class="nav__title">{category.label}</span>
-						<ol>
-							{#if Array.isArray(category.articles)}
-								{#each category.articles as article}
-									<li class="nav__link">
-										<a href="/article/mon-super-article">{article.title}</a>
-									</li>
-								{/each}
-							{/if}
-						</ol>
-					</li>
-				{/each}
-			</ol>
-		</nav>
+		<Navigation {menu} bind:menuIsOpen />
 	</header>
 	<main>
 		<slot />
