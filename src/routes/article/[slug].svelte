@@ -1,4 +1,5 @@
 <script context="module">
+	// get one article as SSR
 	export async function load({ fetch, params }) {
 		const slug = params.slug;
 		console.log(slug);
@@ -21,6 +22,7 @@
 </script>
 
 <script>
+	// article data from SSR
 	export let article;
 	console.log(article);
 </script>

@@ -1,7 +1,10 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
-	let isOpen = false;
+	export let isOpen = false;
+	/**
+	 * change the state of the button (open/close) and fire event for parent component
+	 */
 	function toggleOpenNav() {
 		isOpen = !isOpen;
 		dispatch('openMenuState', isOpen);

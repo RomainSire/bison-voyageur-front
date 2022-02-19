@@ -1,4 +1,5 @@
 <script context="module">
+	// get all articles as SSR
 	export async function load({ fetch }) {
 		const res = await fetch('http://localhost:5000/api/articles');
 		const articles = await res.json();
@@ -19,7 +20,11 @@
 
 <script>
 	import { articlesStore } from '$lib/store';
+
+	// articles data from SSR
 	export let articles;
+
+	// save articles in store
 	articlesStore.update(() => {
 		return articles;
 	});

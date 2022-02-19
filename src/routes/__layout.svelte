@@ -1,4 +1,5 @@
 <script context="module">
+	// get menu as SSR
 	export async function load({ fetch }) {
 		const res = await fetch('http://localhost:5000/api/menu');
 		const menu = await res.json();
@@ -20,8 +21,12 @@
 <script>
 	import '../styles/global.css';
 	import BurgerMenuBtn from '$lib/components/BurgerMenuBtn.svelte';
+
+	// menu data from SSR
 	export let menu;
 	let categories = menu[0].categories;
+
+	// display the menu and handle the open/close state
 	let menuIsOpen = false;
 	function menuStateChanges(event) {
 		menuIsOpen = event.detail;
@@ -34,7 +39,7 @@
 			<img src="/logo.svg" alt="logo de Bison Voyageur" />
 			<p>Bison<br />Voyageur</p>
 		</a>
-		<BurgerMenuBtn on:openMenuState={menuStateChanges} />
+		<BurgerMenuBtn isOpen={menuIsOpen} on:openMenuState={menuStateChanges} />
 		<nav class="nav {menuIsOpen ? '' : 'hidden'}">
 			<ol class="nav__wrapper">
 				{#each categories as category}
