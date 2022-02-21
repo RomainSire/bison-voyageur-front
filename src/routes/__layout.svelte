@@ -1,5 +1,5 @@
 <script context="module">
-	// get menu as SSR
+	// get Menu and Articles list as SSR
 	export async function load({ fetch }) {
 		const [resMenu, resArticles] = await Promise.all([
 			fetch('http://localhost:5000/api/menu'),
@@ -32,16 +32,14 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 	import { articlesStore } from '$lib/store';
 
-	// menu data from SSR
-	export let menu;
+	// get articles from SSR and save it in the store
 	export let articles;
-
-	// save articles in store
 	articlesStore.update(() => {
 		return articles;
 	});
 
-	// state of navigation menu (binded to Navigation and BurgerMenuBtn components)
+	// get menu from SSR, define a state of navigation and pass it to Navigation component as prop (state of navigation is binded to Navigation and BurgerMenuBtn components)
+	export let menu;
 	let menuIsOpen = false;
 </script>
 

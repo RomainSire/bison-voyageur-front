@@ -2,7 +2,7 @@
 	import BurgerMenuBtn from '$lib/components/BurgerMenuBtn.svelte';
 	// get props
 	export let menu;
-	export let menuIsOpen;
+	export let menuIsOpen = false;
 	let categories = menu[0].categories;
 </script>
 
@@ -37,6 +37,7 @@
 	@use '../../styles/variables' as var;
 	.nav {
 		position: absolute;
+		z-index: 10;
 		top: 100%;
 		left: 0;
 		right: 0;
