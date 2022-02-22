@@ -9,7 +9,9 @@
 		if (resMenu.ok && resArticles.ok) {
 			return {
 				props: {
-					menu,
+					menu
+				},
+				stuff: {
 					articles
 				}
 			};
@@ -30,13 +32,6 @@
 <script>
 	import '../styles/global.css';
 	import Navigation from '$lib/components/Navigation.svelte';
-	import { articlesStore } from '$lib/store';
-
-	// get articles from SSR and save it in the store
-	export let articles;
-	articlesStore.update(() => {
-		return articles;
-	});
 
 	// get menu from SSR, define a state of navigation and pass it to Navigation component as prop (state of navigation is binded to Navigation and BurgerMenuBtn components)
 	export let menu;

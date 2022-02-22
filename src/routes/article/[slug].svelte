@@ -1,11 +1,14 @@
 <script context="module">
 	// get one article as SSR
-	export async function load({ fetch, params }) {
-		const slug = params.slug;
-		console.log(slug);
-		const id = 12; //à changer !
-		const res = await fetch(`http://localhost:5000/api/articles/${id}`);
-		const article = await res.json();
+	export async function load({ fetch, params, stuff }) {
+		const article = stuff.articles.find((article) => {
+			return article.slug === params.slug;
+		});
+		const res = await fetch(`http://localhost:5000/api/articles/${article.id}`);
+		const content = await res.json();
+
+		article.body = content.body;
+
 		if (res.ok) {
 			return {
 				props: {
@@ -15,7 +18,7 @@
 		} else {
 			return {
 				status: res.status,
-				error: new Error('Could not fetch the article')
+				error: new Error("Could not fetch the article's content")
 			};
 		}
 	}
@@ -27,4 +30,6 @@
 	console.log(article);
 </script>
 
-<h1>Hello World</h1>
+<h1>{article.title}</h1>
+<h2>{article.date}</h2>
+<div>{article.body}</div>

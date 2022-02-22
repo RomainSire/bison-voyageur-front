@@ -17,7 +17,7 @@
 						{#each category.articles as article}
 							<li class="nav__link">
 								<a
-									href="/article/mon-super-article"
+									href="/article/{article.slug}"
 									on:click={() => {
 										menuIsOpen = false;
 									}}

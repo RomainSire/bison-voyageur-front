@@ -1,11 +1,15 @@
-<script>
-	import { articlesStore } from '$lib/store';
+<script context="module">
+	export async function load({ stuff }) {
+		return {
+			props: {
+				articles: stuff.articles
+			}
+		};
+	}
+</script>
 
-	// get articles from store
-	let articles;
-	articlesStore.subscribe((value) => {
-		articles = value;
-	});
+<script>
+	export let articles;
 	let lastArticles = articles.slice(0, 9);
 	lastArticles.forEach((article) => {
 		article.filename = article.imageUrl.split('/')[2];
@@ -97,8 +101,6 @@
 			height: calc(100vh - 75px);
 			grid-template-rows: repeat(3, 1fr);
 			grid-template-columns: repeat(3, 1fr);
-		}
-		.img-wrapper {
 		}
 	}
 
