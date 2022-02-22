@@ -77,13 +77,16 @@
 		flex-flow: row nowrap;
 		justify-content: space-between;
 		align-items: center;
-		box-shadow: 0 0 10px #333;
 	}
 	.logo {
 		padding: 5px;
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: space-between;
+		transition: transform 200ms ease-in-out;
+		&:hover {
+			transform: scale(1.03);
+		}
 		img {
 			height: 65px;
 		}

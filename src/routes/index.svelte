@@ -67,9 +67,12 @@
 		.content {
 			position: absolute;
 			inset: 0;
-			padding: 1rem;
+			padding: 1.5rem 1rem;
 			background: rgba(255, 255, 255, 0.4);
 			opacity: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 		> * {
 			transition: all 200ms ease-in-out;
