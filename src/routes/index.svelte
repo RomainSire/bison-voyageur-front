@@ -9,6 +9,7 @@
 </script>
 
 <script>
+	import { backendUrl } from '$lib/config';
 	export let articles;
 	let lastArticles = articles.slice(0, 9);
 	lastArticles.forEach((article) => {
@@ -20,7 +21,7 @@
 	{#each lastArticles as article}
 		<a href="/article/{article.slug}" class="img-wrapper">
 			<img
-				src="http://localhost:5000/uploads/small_{article.filename}"
+				src="{backendUrl}/uploads/small_{article.filename}"
 				alt="Photo de l'article: {article.title}"
 			/>
 			<h1>{article.title}</h1>

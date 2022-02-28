@@ -1,10 +1,11 @@
 <script context="module">
+	import { backendUrl } from '$lib/config';
 	// get one article as SSR
 	export async function load({ fetch, params, stuff }) {
 		const article = stuff.articles.find((article) => {
 			return article.slug === params.slug;
 		});
-		const res = await fetch(`http://localhost:5000/api/articles/${article.id}`);
+		const res = await fetch(`${backendUrl}/api/articles/${article.id}`);
 		const content = await res.json();
 
 		article.body = content.body;

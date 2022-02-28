@@ -1,9 +1,10 @@
 <script context="module">
+	import { backendUrl } from '$lib/config';
 	// get Menu and Articles list as SSR
 	export async function load({ fetch }) {
 		const [resMenu, resArticles] = await Promise.all([
-			fetch('http://localhost:5000/api/menu'),
-			fetch('http://localhost:5000/api/articles')
+			fetch(`${backendUrl}/api/menu`),
+			fetch(`${backendUrl}/api/articles`)
 		]);
 		const [menu, articles] = await Promise.all([resMenu.json(), resArticles.json()]);
 		if (resMenu.ok && resArticles.ok) {
