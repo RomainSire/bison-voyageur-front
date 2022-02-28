@@ -30,7 +30,10 @@
 	import { marked } from 'marked';
 	// article data from SSR
 	export let article;
-	// replacing image url by filename, url is redefined below with other img tags modifications
+	// format date
+	let date = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full' }).format(new Date(article.date));
+
+	// replacing original image url by medium size image url
 	let content = marked(article.body)
 		.replaceAll('/uploads/', `${backendUrl}/uploads/medium_`)
 		.replaceAll('<img', '<img loading="lazy"');
@@ -55,7 +58,7 @@
 
 <div class="wrapper">
 	<h1>{article.title}</h1>
-	<h2>{article.date}</h2>
+	<h2>{date}</h2>
 	<div class="markdown">
 		{@html content}
 	</div>
@@ -64,6 +67,13 @@
 <style lang="scss">
 	.wrapper {
 		padding: 2rem 5%;
+		h1,
+		h2 {
+			margin: 0.8em 0;
+			&::first-letter {
+				text-transform: capitalize;
+			}
+		}
 	}
 	// styles of the markdown are located in the ../../styles/global.css file. styles here are not applied
 </style>
