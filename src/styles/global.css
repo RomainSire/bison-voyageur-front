@@ -38,3 +38,25 @@ h4 {
 p {
 	margin: 0;
 }
+
+/* styles of the markdown (article detail) */
+.markdown p {
+	line-height: 2em;
+	margin: 1.8em 0;
+	text-align: justify;
+}
+.markdown img {
+	display: block;
+	margin: 0 auto;
+	max-width: min(100%, 750px);
+	max-height: 750px;
+	box-shadow: 0 0 15px #333;
+	padding: 2px;
+	border: 1px solid #021a40;
+	background-color: #fff;
+	cursor: pointer;
+	transition: transform 200ms ease-in-out;
+}
+.markdown img:hover {
+	transform: scale(1.01) rotate(0.3deg);
+}
