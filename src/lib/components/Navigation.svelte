@@ -52,6 +52,8 @@
 		}
 		&__wrapper {
 			padding: 1em;
+			max-height: calc(100vh - 75px);
+			overflow-y: scroll;
 		}
 		&__title {
 			display: block;

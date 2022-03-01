@@ -67,7 +67,8 @@
 		flex-wrap: nowrap;
 	}
 	.header {
-		position: relative;
+		position: sticky;
+		top: 0;
 		background-color: var.$color-bg-head;
 		display: flex;
 		flex-flow: row nowrap;

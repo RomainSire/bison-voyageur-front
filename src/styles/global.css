@@ -55,8 +55,4 @@ p {
 	border: 1px solid #021a40;
 	background-color: #fff;
 	cursor: pointer;
-	transition: transform 200ms ease-in-out;
-}
-.markdown img:hover {
-	transform: scale(1.01) rotate(0.3deg);
 }
