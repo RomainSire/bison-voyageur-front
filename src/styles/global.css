@@ -34,9 +34,11 @@ h4 {
 	margin: 0;
 	font-family: Akaya, sans-serif;
 	font-weight: 400;
+	color: #383838;
 }
 p {
 	margin: 0;
+	color: #383838;
 }
 
 /* styles of the markdown (article detail) */

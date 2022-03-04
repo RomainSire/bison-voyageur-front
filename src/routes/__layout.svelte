@@ -9,11 +9,9 @@
 		const [menu, articles] = await Promise.all([resMenu.json(), resArticles.json()]);
 		if (resMenu.ok && resArticles.ok) {
 			return {
-				props: {
-					menu
-				},
 				stuff: {
-					articles
+					articles,
+					menu
 				}
 			};
 		} else if (!resMenu.ok) {
@@ -32,26 +30,15 @@
 
 <script>
 	import '../styles/global.css';
-	import Navigation from '$lib/components/Navigation.svelte';
-
-	// get menu from SSR, define a state of navigation and pass it to Navigation component as prop (state of navigation is binded to Navigation and BurgerMenuBtn components)
-	export let menu;
-	let menuIsOpen = false;
 </script>
 
 <div class="layout">
 	<header class="header">
-		<a
-			href="/"
-			class="logo"
-			on:click={() => {
-				menuIsOpen = false;
-			}}
-		>
+		<a href="/" class="logo">
 			<img src="/logo.svg" alt="logo de Bison Voyageur" />
 			<p>Bison<br />Voyageur</p>
 		</a>
-		<Navigation {menu} bind:menuIsOpen />
+		<a href="/navigation" class="menu">Menu</a>
 	</header>
 	<main>
 		<slot />
@@ -74,9 +61,9 @@
 		flex-flow: row nowrap;
 		justify-content: space-between;
 		align-items: center;
+		padding: 5px;
 	}
 	.logo {
-		padding: 5px;
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: space-between;
@@ -94,6 +81,16 @@
 			font-size: 2rem;
 			line-height: 1.8rem;
 			color: var.$color-title;
+		}
+	}
+	.menu {
+		font-family: var.$font-title;
+		font-size: 1.5rem;
+		color: var.$color-title;
+		padding: 0.5rem 1.5rem;
+		transition: transform 200ms ease-in-out;
+		&:hover {
+			transform: scale(1.03);
 		}
 	}
 </style>
