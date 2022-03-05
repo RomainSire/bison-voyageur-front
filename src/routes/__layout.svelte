@@ -62,6 +62,7 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 5px;
+		z-index: 10;
 	}
 	.logo {
 		display: flex;

@@ -92,13 +92,27 @@
 	}
 </script>
 
-<div class="wrapper">
+<section class="hero" style="background-image: url({backendUrl}{article.imageUrl});">
 	<h1>{article.title}</h1>
+	<a href="#content" class="to-content">
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			aria-hidden="true"
+			role="img"
+			class="iconify iconify--ic"
+			width="32"
+			height="32"
+			preserveAspectRatio="xMidYMid meet"
+			viewBox="0 0 24 24"
+			><path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6l-6-6l1.41-1.41z" />
+		</svg>
+	</a>
+</section>
+<section id="content" class="markdown">
 	<h2>{date}</h2>
-	<div class="markdown">
-		{@html content}
-	</div>
-</div>
+	{@html content}
+</section>
 
 {#if isGalleryDisplayed}
 	<section class="gallery" transition:fade>
@@ -170,11 +184,59 @@
 {/if}
 
 <style lang="scss">
-	.wrapper {
+	.hero {
+		width: 100%;
+		height: calc(100vh - 75px);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		h1 {
+			margin: 0 5%;
+			font-size: 5rem;
+			line-height: 1em;
+			color: #fff;
+			background: #0008;
+			box-shadow: 0 0 10px #000;
+			border-radius: 5px;
+			padding: 0.5em;
+			text-align: center;
+			&::first-letter {
+				text-transform: capitalize;
+			}
+		}
+		.to-content {
+			color: #fff;
+			background: #0008;
+			border-radius: 50%;
+			box-shadow: 0 0 10px #000;
+			padding: 1em;
+			position: absolute;
+			bottom: 1rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	@media (max-width: 800px) {
+		.hero h1 {
+			font-size: 3.5rem;
+		}
+	}
+	@media (max-width: 400px) {
+		.hero h1 {
+			font-size: 2.5rem;
+		}
+	}
+	.markdown {
 		padding: 2rem 5%;
-		h1,
 		h2 {
-			margin: 0.8em 0;
+			margin: 75px 0 0.8em 0;
+			font-size: 1.8rem;
 			&::first-letter {
 				text-transform: capitalize;
 			}
@@ -189,6 +251,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		z-index: 20;
 		&__btn {
 			position: absolute;
 			background: transparent;
