@@ -1,8 +1,11 @@
 <script context="module">
+	import { fade } from 'svelte/transition';
+	import { backendUrl } from '$lib/config';
 	export async function load({ stuff }) {
 		return {
 			props: {
-				menu: stuff.menu
+				menu: stuff.menu,
+				articlesCollection: stuff.articles
 			}
 		};
 	}
@@ -10,28 +13,69 @@
 
 <script>
 	export let menu;
+	export let articlesCollection;
 	let categories = menu[0].categories;
+
+	// get the menu's article's thumbnail url
+	function getThumbnailUrl(article) {
+		return articlesCollection
+			.find((item) => {
+				return item.id === article.id;
+			})
+			.imageUrl.replace('/uploads/', `${backendUrl}/uploads/thumbnail_`);
+	}
+
+	// image preview appearing and following the mouse
+	let m = { x: 0, y: 0 };
+	let src = '';
+	function handleMousemove(event) {
+		m.x = event.pageX;
+		m.y = event.pageY;
+	}
+	function handleMouseEnter(event) {
+		src = event.target.dataset.image;
+	}
+	function handleMouseLeave() {
+		src = '';
+	}
 </script>
 
-<nav class="nav">
+<nav class="nav" on:mousemove={handleMousemove}>
 	<ol>
 		{#each categories as category}
-			<li class="nav__block">
-				<span class="nav__title">{category.label}</span>
-				<ol>
-					{#if Array.isArray(category.articles)}
-						{#each category.articles as article}
-							<li class="nav__link">
-								<a href="/article/{article.slug}">
-									{article.title}
-								</a>
-							</li>
-						{/each}
-					{/if}
-				</ol>
-			</li>
+			{#if typeof category.articles !== 'undefined'}
+				<li class="nav__block">
+					<span class="nav__title">{category.label}</span>
+					<ol>
+						{#if Array.isArray(category.articles)}
+							{#each category.articles as article}
+								<li class="nav__item">
+									<a
+										href="/article/{article.slug}"
+										class="nav__link"
+										data-image={getThumbnailUrl(article)}
+										on:mouseenter={handleMouseEnter}
+										on:mouseleave={handleMouseLeave}
+									>
+										{article.title}
+									</a>
+								</li>
+							{/each}
+						{/if}
+					</ol>
+				</li>
+			{/if}
 		{/each}
 	</ol>
+	{#key src}
+		<img
+			transition:fade
+			{src}
+			alt=""
+			class="floating-img"
+			style="transform: translate({m.x + 20}px, {m.y + 20}px);"
+		/>
+	{/key}
 </nav>
 
 <style lang="scss">
@@ -39,8 +83,11 @@
 	.nav {
 		color: var.$color-text;
 		padding: 1em;
+		margin-bottom: 150px;
 		&__block {
 			margin-bottom: 2.5rem;
+			text-align: center;
+			position: relative;
 		}
 		&__title {
 			display: block;
@@ -48,12 +95,40 @@
 			font-size: 1.3rem;
 			margin-bottom: 1.5rem;
 		}
-		&__link {
+		&__item {
 			line-height: 1.2rem;
 			margin: 1.2rem 0;
-			a:hover {
-				text-decoration: underline;
+		}
+		&__link {
+			display: inline-block;
+			position: relative;
+			opacity: 0.6;
+			transition: opacity 150ms ease-in-out;
+			&::after {
+				content: '';
+				border-bottom: 2px solid var.$color-text;
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: -0.1em;
+				transform: scaleX(0);
+				transform-origin: left;
+				transition: transform 150ms ease-in-out;
+			}
+			&:hover {
+				opacity: 1;
+				&::after {
+					transform: scaleX(1);
+				}
 			}
 		}
+	}
+
+	.floating-img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 30;
+		transition: transform 50ms ease-in-out;
 	}
 </style>
