@@ -40,9 +40,7 @@
 		</a>
 		<a href="/navigation" class="menu">Menu</a>
 	</header>
-	<main>
-		<slot />
-	</main>
+	<slot />
 </div>
 
 <style lang="scss">

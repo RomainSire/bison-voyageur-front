@@ -17,7 +17,7 @@
 	});
 </script>
 
-<div class="grid">
+<main class="grid">
 	{#each lastArticles as article}
 		<a href="/article/{article.slug}" class="img-wrapper">
 			<img
@@ -30,7 +30,7 @@
 			</div>
 		</a>
 	{/each}
-</div>
+</main>
 
 <style lang="scss">
 	@use '../styles/variables' as var;

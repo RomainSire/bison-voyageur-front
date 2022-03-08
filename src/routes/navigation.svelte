@@ -1,5 +1,5 @@
 <script context="module">
-	import { fade } from 'svelte/transition';
+	import { fade, slide } from 'svelte/transition';
 	import { backendUrl } from '$lib/config';
 	export async function load({ stuff }) {
 		return {
@@ -46,7 +46,7 @@
 	}
 </script>
 
-<nav class="nav" on:mousemove={handleMousemove}>
+<nav class="nav" on:mousemove={handleMousemove} transition:slide>
 	<ol>
 		{#each categories as category}
 			{#if typeof category.articles !== 'undefined'}
