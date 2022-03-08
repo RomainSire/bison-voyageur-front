@@ -26,11 +26,17 @@
 	}
 
 	// image preview appearing and following the mouse
-	let m = { x: 0, y: 0 };
+	import { spring } from 'svelte/motion';
+	let coords = spring(
+		{ x: 50, y: 50 },
+		{
+			stiffness: 0.1,
+			damping: 0.25
+		}
+	);
 	let src = '';
 	function handleMousemove(event) {
-		m.x = event.pageX;
-		m.y = event.pageY;
+		coords.set({ x: event.pageX, y: event.pageY });
 	}
 	function handleMouseEnter(event) {
 		src = event.target.dataset.image;
@@ -73,7 +79,7 @@
 			{src}
 			alt=""
 			class="floating-img"
-			style="transform: translate({m.x + 20}px, {m.y + 20}px);"
+			style="transform: translate({$coords.x + 20}px, {$coords.y + 20}px);"
 		/>
 	{/key}
 </nav>
@@ -129,6 +135,5 @@
 		top: 0;
 		left: 0;
 		z-index: 30;
-		transition: transform 50ms ease-in-out;
 	}
 </style>
