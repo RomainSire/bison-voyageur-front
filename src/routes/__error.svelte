@@ -37,7 +37,7 @@
 	main {
 		width: 100%;
 		height: calc(100vh - 75px);
-		background-image: url('404.jpg');
+		background-image: url('/static/404.jpg');
 		background-position: 50% 15%;
 		background-repeat: no-repeat;
 		background-size: cover;
