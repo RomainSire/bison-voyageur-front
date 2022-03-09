@@ -55,9 +55,6 @@ p {
 	margin: 0 auto;
 	max-width: min(100%, 750px);
 	max-height: 750px;
-	box-shadow: 0 0 15px #333;
-	padding: 2px;
-	border: 1px solid #021a40;
-	background-color: #fff;
+	box-shadow: 0 0 15px #555;
 	cursor: pointer;
 }
