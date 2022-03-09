@@ -19,7 +19,7 @@
 
 <main class="grid">
 	{#each lastArticles as article}
-		<a href="/article/{article.slug}" class="img-wrapper">
+		<a sveltekit:prefetch href="/article/{article.slug}" class="img-wrapper">
 			<img
 				src="{backendUrl}/uploads/small_{article.filename}"
 				alt="Photo de l'article: {article.title}"

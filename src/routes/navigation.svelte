@@ -57,6 +57,7 @@
 							{#each category.articles as article}
 								<li class="nav__item">
 									<a
+										sveltekit:prefetch
 										href="/article/{article.slug}"
 										class="nav__link"
 										data-image={getThumbnailUrl(article)}
