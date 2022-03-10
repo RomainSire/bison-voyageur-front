@@ -9,13 +9,48 @@
 </script>
 
 <script>
-	import { backendUrl } from '$lib/config';
+	import { backendUrl, frontendUrl } from '$lib/config';
 	export let articles;
 	let lastArticles = articles.slice(0, 9);
 	lastArticles.forEach((article) => {
 		article.filename = article.imageUrl.split('/')[2];
 	});
 </script>
+
+<svelte:head>
+	<title>Bison Voyageur: mon tour du monde</title>
+	<meta
+		name="description"
+		content="Prenez place à mes côtés pendant que je vous partage l'expérience de mon tour du monde de 1 an en sac à dos à travers l'Europe, l'Asie, l'Océanie et l'Amérique Latine."
+	/>
+
+	<meta name="robots" content="index, follow" />
+
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Bison Voyageur: mon tour du monde" />
+	<meta
+		property="og:description"
+		content="Prenez place à mes côtés pendant que je vous partage l'expérience de mon tour du monde de 1 an en sac à dos à travers l'Europe, l'Asie, l'Océanie et l'Amérique Latine."
+	/>
+	<meta
+		property="og:image"
+		content="{backendUrl}/uploads/medium_dariusz_sankowski_3_Oi_Y_Mg_DKJ_6k_unsplash_f35d7ece69.jpg"
+	/>
+	<meta property="og:url" content={frontendUrl} />
+	<meta property="og:site_name" content="Bison Voyageur" />
+
+	<meta name="twitter:title" content="Bison Voyageur: mon tour du monde" />
+	<meta
+		name="twitter:description"
+		content="Prenez place à mes côtés pendant que je vous partage l'expérience de mon tour du monde de 1 an en sac à dos à travers l'Europe, l'Asie, l'Océanie et l'Amérique Latine."
+	/>
+	<meta
+		name="twitter:image"
+		content="{backendUrl}/uploads/medium_dariusz_sankowski_3_Oi_Y_Mg_DKJ_6k_unsplash_f35d7ece69.jpg"
+	/>
+	<meta name="twitter:site" content="@BisonVoyageur" />
+	<meta name="twitter:creator" content="@BisonVoyageur" />
+</svelte:head>
 
 <main class="grid">
 	{#each lastArticles as article}

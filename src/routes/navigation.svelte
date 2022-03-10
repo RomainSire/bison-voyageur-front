@@ -1,6 +1,6 @@
 <script context="module">
 	import { fade, slide } from 'svelte/transition';
-	import { backendUrl } from '$lib/config';
+	import { backendUrl, frontendUrl } from '$lib/config';
 	export async function load({ stuff }) {
 		return {
 			props: {
@@ -45,6 +45,41 @@
 		src = '';
 	}
 </script>
+
+<svelte:head>
+	<title>Tous les articles | Bison Voyageur</title>
+	<meta
+		name="description"
+		content="Consultez la liste des articles que j'ai rédigés lors de mon tour du monde de 1 an en sac à dos à travers l'Europe, l'Asie, l'Océanie et l'Amérique Latine."
+	/>
+
+	<meta name="robots" content="index, follow" />
+
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Tous les articles - Bison Voyageur" />
+	<meta
+		property="og:description"
+		content="Consultez la liste des articles que j'ai rédigés lors de mon tour du monde de 1 an en sac à dos à travers l'Europe, l'Asie, l'Océanie et l'Amérique Latine."
+	/>
+	<meta
+		property="og:image"
+		content="{backendUrl}/uploads/medium_dariusz_sankowski_3_Oi_Y_Mg_DKJ_6k_unsplash_f35d7ece69.jpg"
+	/>
+	<meta property="og:url" content="{frontendUrl}/navigation" />
+	<meta property="og:site_name" content="Bison Voyageur" />
+
+	<meta name="twitter:title" content="Tous les articles - Bison Voyageur" />
+	<meta
+		name="twitter:description"
+		content="Consultez la liste des articles que j'ai rédigés lors de mon tour du monde de 1 an en sac à dos à travers l'Europe, l'Asie, l'Océanie et l'Amérique Latine."
+	/>
+	<meta
+		name="twitter:image"
+		content="{backendUrl}/uploads/medium_dariusz_sankowski_3_Oi_Y_Mg_DKJ_6k_unsplash_f35d7ece69.jpg"
+	/>
+	<meta name="twitter:site" content="@BisonVoyageur" />
+	<meta name="twitter:creator" content="@BisonVoyageur" />
+</svelte:head>
 
 <nav class="nav" on:mousemove={handleMousemove} transition:slide>
 	<ol>

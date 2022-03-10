@@ -11,6 +11,14 @@
 	console.error(error.message);
 </script>
 
+<svelte:head>
+	<title>404 petite erreur.. | Bison Voyageur</title>
+	<meta
+		name="description"
+		content="Ooops, il y a eu une petite erreur! Revenez sur la page d'accueil."
+	/>
+</svelte:head>
+
 <main>
 	<section>
 		<div class="message">Oups! Il y a un petit problème...</div>

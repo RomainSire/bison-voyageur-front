@@ -1,5 +1,5 @@
 <script context="module">
-	import { backendUrl } from '$lib/config';
+	import { backendUrl, frontendUrl } from '$lib/config';
 	// get one article as SSR
 	export async function load({ fetch, params, stuff }) {
 		const article = stuff.articles.find((article) => {
@@ -91,6 +91,26 @@
 		alt = images[currentImgIndex].alt;
 	}
 </script>
+
+<svelte:head>
+	<title>{article.title} | Bison Voyageur</title>
+	<meta name="description" content={article.summary} />
+
+	<meta name="robots" content="index, follow" />
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="{article.title} - Bison Voyageur" />
+	<meta property="og:description" content={article.summary} />
+	<meta property="og:image" content="{backendUrl}{article.imageUrl}" />
+	<meta property="og:url" content="{frontendUrl}/{article.slug}" />
+	<meta property="og:site_name" content="Bison Voyageur" />
+
+	<meta name="twitter:title" content="{article.title} - Bison Voyageur" />
+	<meta name="twitter:description" content={article.summary} />
+	<meta name="twitter:image" content="{backendUrl}{article.imageUrl}" />
+	<meta name="twitter:site" content="@BisonVoyageur" />
+	<meta name="twitter:creator" content="@BisonVoyageur" />
+</svelte:head>
 
 <main transition:slide>
 	<section class="hero" style="background-image: url({backendUrl}{article.imageUrl});">
