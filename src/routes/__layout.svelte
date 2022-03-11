@@ -35,7 +35,7 @@
 <div class="layout">
 	<header class="header">
 		<a sveltekit:prefetch href="/" class="logo">
-			<img src="/logo.svg" alt="logo de Bison Voyageur" />
+			<img src="/logo.svg" alt="logo de Bison Voyageur" width="65px" height="65px" />
 			<p>Bison<br />Voyageur</p>
 		</a>
 		<a sveltekit:prefetch href="/navigation" class="menu">Menu</a>

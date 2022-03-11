@@ -18,7 +18,7 @@
 </script>
 
 <svelte:head>
-	<title>Bison Voyageur: mon tour du monde</title>
+	<title>Bison Voyageur autour du monde</title>
 	<meta
 		name="description"
 		content="Prenez place à mes côtés pendant que je vous partage l'expérience de mon tour du monde de 1 an en sac à dos à travers l'Europe, l'Asie, l'Océanie et l'Amérique Latine."
@@ -27,7 +27,7 @@
 	<meta name="robots" content="index, follow" />
 
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Bison Voyageur: mon tour du monde" />
+	<meta property="og:title" content="Bison Voyageur autour du monde" />
 	<meta
 		property="og:description"
 		content="Prenez place à mes côtés pendant que je vous partage l'expérience de mon tour du monde de 1 an en sac à dos à travers l'Europe, l'Asie, l'Océanie et l'Amérique Latine."
@@ -39,7 +39,7 @@
 	<meta property="og:url" content={frontendUrl} />
 	<meta property="og:site_name" content="Bison Voyageur" />
 
-	<meta name="twitter:title" content="Bison Voyageur: mon tour du monde" />
+	<meta name="twitter:title" content="Bison Voyageur autour du monde" />
 	<meta
 		name="twitter:description"
 		content="Prenez place à mes côtés pendant que je vous partage l'expérience de mon tour du monde de 1 an en sac à dos à travers l'Europe, l'Asie, l'Océanie et l'Amérique Latine."

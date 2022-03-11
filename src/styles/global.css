@@ -1,10 +1,12 @@
 @font-face {
 	font-family: 'Akaya';
 	src: url('../fonts/AkayaTelivigala-Regular.ttf') format('truetype');
+	font-display: swap;
 }
 @font-face {
 	font-family: 'Montserrat';
 	src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+	font-display: swap;
 }
 
 * {
