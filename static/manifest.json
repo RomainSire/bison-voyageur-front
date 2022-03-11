@@ -1,0 +1,38 @@
+{
+  "short_name": "Bison Voyageur",
+  "name": "Bison Voyageur autour du monde",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "./favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "Tous les articles de Bison Voyageur autour du monde",
+      "short_name": "Tous les articles",
+      "description": "Consultez la liste des articles que j'ai rédigés lors de mon tour du monde de 1 an en sac à dos à travers l'Europe, l'Asie, l'Océanie et l'Amérique Latine.",
+      "url": "/navigation?source=pwa",
+      "icons": [
+        {
+          "src": "./favicon/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "description": "Prenez place à mes côtés pendant que je vous partage l'expérience de mon tour du monde de 1 an en sac à dos à travers l'Europe, l'Asie, l'Océanie et l'Amérique Latine."
+}
